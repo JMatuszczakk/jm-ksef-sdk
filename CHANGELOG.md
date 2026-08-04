@@ -20,5 +20,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Full TypeScript types for the KSeF API v2 surface used by this library.
 - Test suite covering crypto helpers, ZIP building, and session state guards.
 
-[Unreleased]: https://github.com/JMatuszczakk/jm-ksef/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/JMatuszczakk/jm-ksef/releases/tag/v0.1.0
+[Unreleased]: https://github.com/JMatuszczakk/jm-ksef-sdk/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/JMatuszczakk/jm-ksef-sdk/releases/tag/v0.1.0

@@ -5,7 +5,7 @@ Thanks for considering a contribution to `jm-ksef`.
 ## Setup
 
 ```bash
-git clone https://github.com/JMatuszczakk/jm-ksef.git
+git clone https://github.com/JMatuszczakk/jm-ksef-sdk.git
 cd jm-ksef
 npm install
 ```
