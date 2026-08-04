@@ -8,11 +8,10 @@ in this repository. Human contributors: see [CONTRIBUTING.md](CONTRIBUTING.md) i
 `jm-ksef` is a small, zero-dependency TypeScript library that implements the client side
 of the **KSeF** (Krajowy System e-Faktur — Poland's national e-invoicing system) API v2
 protocol: authentication, encrypted online/batch invoice sessions, invoice metadata
-querying, async export, and QR verification links.
+querying, async export, QR verification links, and FA(3) invoice XML generation.
 
 It is a **library**, not an application. There is no server, no database, no UI. Callers
-bring their own invoice XML and their own persistence for tokens if they need to survive
-restarts.
+bring their own persistence for tokens if they need to survive restarts.
 
 ## Hard constraints — do not violate these
 
@@ -25,8 +24,16 @@ restarts.
   `atob`/`btoa`, and standard ES2022. No `node:` built-ins (no `crypto` module, no
   `Buffer`, no `fs`) in `src/`. Test files under `test/` running via `node --test` are
   the one place Node-only APIs are fine.
-- **No invoice-XML generation.** Building FA(2)/FA(3) invoice documents is explicitly
-  out of scope — this library only moves already-built XML through the KSeF protocol.
+- **FA(3) only for XML generation.** `invoice-xml.ts` generates FA(3) documents only.
+  Do not add FA(2) generation — FA(2) is being phased out by KSeF, and callers who
+  still need it can hand-build/paste raw XML into `sendInvoice()`/`openBatchSession()`
+  directly, since those accept any valid XML string regardless of schema version.
+- **Ground any new invoice-XML field in the actual XSD**, not in memory or inference.
+  The FA(3) schema lives at `ksef-docs/faktury/schemy/FA/schemat_FA(3)_v1-0E.xsd` in
+  the sibling `jm-ksef` app repo (not part of this repo) — if you don't have access to
+  it, say so rather than guessing what a `P_NN` field or annotation flag means; getting
+  a tax-form field wrong is a correctness bug with real consequences for whoever files
+  it, not a cosmetic one.
 - Don't reintroduce app-specific concerns that were deliberately stripped out when this
   library was extracted from a larger app: no D1/SQL persistence, no Hono/Express
   routing, no at-rest token encryption tied to a specific storage backend. Token
@@ -41,6 +48,7 @@ src/
   crypto.ts   WebCrypto helpers: RSA-OAEP, AES-256-CBC, SHA-256, base64
   http.ts     Thin fetch wrapper + KsefApiError
   zip.ts      Minimal STORE-only ZIP builder for batch session uploads
+  invoice-xml.ts  FA(3) invoice XML generator (generateInvoiceXml)
   client.ts   KsefSession (+ OnlineSession/BatchSession) — the public high-level API
   index.ts    Public exports — this is the package's entire surface area
 test/         node:test suites, run against the *compiled* dist/ output

@@ -20,4 +20,16 @@ export {
 
 export { buildSimpleZip } from "./zip.js";
 
+export { generateInvoiceXml, escapeXml as escapeInvoiceXml } from "./invoice-xml.js";
+export type {
+    Invoice,
+    InvoiceLineItem,
+    InvoiceType,
+    InvoiceAnnotations,
+    CorrectionData,
+    Party,
+    PaymentMethod,
+    VatRate,
+} from "./invoice-xml.js";
+
 export * from "./types.js";

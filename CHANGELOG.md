@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-08-04
+
+### Added
+
+- `generateInvoiceXml()` — builds a KSeF FA(3) invoice XML document from plain
+  data (seller/buyer, line items, corrective-invoice fields, payment info, and
+  statutory annotations). Computes net/VAT/gross amounts and VAT-rate summary
+  buckets for you. Validated against the official `schemat_FA(3)_v1-0E.xsd`
+  via `xmllint` as part of the test suite, for plain, corrective, and
+  fully-annotated sample invoices.
+- New types: `Invoice`, `InvoiceLineItem`, `InvoiceType`, `InvoiceAnnotations`,
+  `CorrectionData`, `Party`, `PaymentMethod`, `VatRate`. New export:
+  `escapeInvoiceXml`.
+- `docs/invoice-xml.md` — coverage and limitations of the generator (FA(2) is
+  not supported; several rare special-procedure fields are intentionally
+  out of scope — see the doc for the full list).
+
 ## [0.1.3] - 2026-08-04
 
 ### Fixed
@@ -45,7 +62,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Full TypeScript types for the KSeF API v2 surface used by this library.
 - Test suite covering crypto helpers, ZIP building, and session state guards.
 
-[Unreleased]: https://github.com/JMatuszczakk/jm-ksef-sdk/compare/v0.1.3...HEAD
+[Unreleased]: https://github.com/JMatuszczakk/jm-ksef-sdk/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/JMatuszczakk/jm-ksef-sdk/compare/v0.1.3...v0.2.0
 [0.1.3]: https://github.com/JMatuszczakk/jm-ksef-sdk/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/JMatuszczakk/jm-ksef-sdk/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/JMatuszczakk/jm-ksef-sdk/compare/v0.1.0...v0.1.1

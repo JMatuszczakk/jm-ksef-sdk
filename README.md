@@ -6,15 +6,19 @@
 
 Plug-and-play JS/TS client for the Polish **KSeF** (Krajowy System e-Faktur) API v2 — the
 national e-invoicing system. Handles authentication, encrypted interactive/batch invoice
-sessions, invoice querying, async export, and QR verification-link generation.
+sessions, invoice querying, async export, QR verification-link generation, and FA(3)
+invoice XML generation.
 
 - **Zero runtime dependencies** — built entirely on WebCrypto and `fetch`.
 - Runs unmodified on **Node.js 20+**, **browsers**, **Cloudflare Workers**, and **Deno**.
 - Ships full TypeScript types for the KSeF API surface.
 - Stateless-friendly: the client holds tokens in memory; persist/restore them however you like.
+- `generateInvoiceXml()` output is validated against the official FA(3) XSD as part of
+  this library's own test suite — see [`docs/invoice-xml.md`](docs/invoice-xml.md) for
+  exactly what's covered and what isn't.
 
-> This library only wraps the KSeF *protocol* (crypto, HTTP, session lifecycle). It does not
-> generate invoice XML (FA(2)/FA(3) documents) for you — bring your own XML and pass it in.
+> FA(2) is not supported for generation — only FA(3). You can still send FA(2) documents
+> you built or received elsewhere; `sendInvoice()`/`openBatchSession()` accept any XML.
 
 ## Install
 
@@ -54,6 +58,47 @@ const xml = await ksef.getInvoiceXml(results.invoices[0].ksefNumber);
 // 5. Disconnect when done
 await ksef.disconnect();
 ```
+
+## Generating invoice XML
+
+Don't have an invoice XML yet? `generateInvoiceXml()` builds one for you from plain
+data — amounts, VAT-rate summaries, and statutory annotations are computed for you:
+
+```ts
+import { generateInvoiceXml } from "jm-ksef";
+
+const xml = generateInvoiceXml({
+    invoiceType: "VAT",
+    invoiceNumber: "FV/2026/08/001",
+    issueDate: "2026-08-04",
+    seller: {
+        nip: "1111111111",
+        name: "Acme Sp. z o.o.",
+        street: "Testowa", buildingNumber: "1",
+        postalCode: "00-001", city: "Warszawa", country: "PL",
+    },
+    buyer: {
+        nip: "2222222222",
+        name: "Buyer Sp. z o.o.",
+        street: "Kupiecka", buildingNumber: "2",
+        postalCode: "00-002", city: "Kraków", country: "PL",
+    },
+    lineItems: [
+        { description: "Usługa konsultingowa", quantity: 1, unitOfMeasure: "szt.", unitPrice: 1000, vatRate: 23 },
+    ],
+    paymentMethod: "transfer",
+    paymentDeadline: "2026-08-18",
+    bankAccount: "PL61109010140000071219812874",
+});
+
+const session = await ksef.openOnlineSession("FA(3)");
+await session.sendInvoice(xml);
+```
+
+Only FA(3) generation is supported (FA(2) generation is intentionally out of scope — see
+[`docs/invoice-xml.md`](docs/invoice-xml.md) for the full list of what the generator does
+and doesn't cover, including corrective invoices, VAT exemptions, margin scheme, and
+other statutory annotations).
 
 ## Batch sending
 
@@ -159,8 +204,17 @@ for batch archives.
 `OnlineSession` has `sendInvoice(xml)` and `close()`. `BatchSession` has `close()` and
 exposes `invoiceCount` / `uploadResults`.
 
+### `generateInvoiceXml(invoice): string`
+
+Builds an FA(3) `<Faktura>` document from an `Invoice` object (see
+[`docs/invoice-xml.md`](docs/invoice-xml.md) for the full field reference and coverage
+notes). `escapeInvoiceXml(s): string` is also exported if you're composing XML fragments
+of your own.
+
 ## Further reading
 
+- [`docs/invoice-xml.md`](docs/invoice-xml.md) — what `generateInvoiceXml()` covers,
+  what it doesn't, and how its output is validated against the real FA(3) XSD.
 - [`docs/protocol-notes.md`](docs/protocol-notes.md) — why the auth/session/QR flows work
   the way they do, useful when debugging a `KsefApiError`.
 - [`docs/testing-against-ksef.md`](docs/testing-against-ksef.md) — how to smoke-test
