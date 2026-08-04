@@ -1,7 +1,7 @@
 /**
  * Crypto utilities for KSeF integration.
  * Built entirely on WebCrypto (`globalThis.crypto.subtle`) — works unmodified
- * in Node.js 18+, browsers, and Cloudflare Workers/Deno.
+ * in Node.js 20+, browsers, and Cloudflare Workers/Deno.
  */
 
 // ── RSA-OAEP SHA-256 encryption ──

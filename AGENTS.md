@@ -19,7 +19,7 @@ restarts.
 - **Zero runtime dependencies.** `devDependencies` may only contain `typescript` (and
   test tooling if ever needed — prefer Node's built-in `node:test` over adding one).
   Do not add a fetch polyfill, a crypto library, a zip library, or a date library.
-- **Platform-neutral.** Every line of `src/` must run unmodified on Node.js 18+,
+- **Platform-neutral.** Every line of `src/` must run unmodified on Node.js 20+,
   evergreen browsers, Cloudflare Workers, and Deno. That means: only `fetch`,
   `globalThis.crypto.subtle`/`crypto.getRandomValues`, `TextEncoder`/`TextDecoder`,
   `atob`/`btoa`, and standard ES2022. No `node:` built-ins (no `crypto` module, no

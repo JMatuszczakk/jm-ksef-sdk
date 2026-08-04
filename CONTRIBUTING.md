@@ -19,7 +19,7 @@ npm test            # build + run node:test suite against dist/
 ```
 
 - Source lives in `src/`; never edit `dist/` directly (it's generated and gitignored).
-- Keep the library dependency-free. It must run unmodified on Node 18+, browsers, and
+- Keep the library dependency-free. It must run unmodified on Node 20+, browsers, and
   Cloudflare Workers — anything that isn't available via `fetch` and WebCrypto
   (`globalThis.crypto.subtle`) doesn't belong here.
 - Prefer adding a focused test in `test/*.test.js` (plain Node `node:test`, importing

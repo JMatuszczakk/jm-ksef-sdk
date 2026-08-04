@@ -1,7 +1,7 @@
 {
     "name": "jm-ksef",
     "version": "0.1.0",
-    "description": "Plug-and-play JS/TS client for the Polish KSeF (Krajowy System e-Faktur) API v2 — authentication, invoice sessions (online + batch), querying, export, and verification. Zero dependencies, runs on Node 18+, browsers, and Cloudflare Workers (WebCrypto only).",
+    "description": "Plug-and-play JS/TS client for the Polish KSeF (Krajowy System e-Faktur) API v2 — authentication, invoice sessions (online + batch), querying, export, and verification. Zero dependencies, runs on Node 20+, browsers, and Cloudflare Workers (WebCrypto only).",
     "type": "module",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
@@ -51,7 +51,7 @@
     },
     "homepage": "https://github.com/JMatuszczakk/jm-ksef-sdk#readme",
     "engines": {
-        "node": ">=18"
+        "node": ">=20"
     },
     "devDependencies": {
         "typescript": "^5.7.0"

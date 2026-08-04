@@ -9,7 +9,7 @@ national e-invoicing system. Handles authentication, encrypted interactive/batch
 sessions, invoice querying, async export, and QR verification-link generation.
 
 - **Zero runtime dependencies** — built entirely on WebCrypto and `fetch`.
-- Runs unmodified on **Node.js 18+**, **browsers**, **Cloudflare Workers**, and **Deno**.
+- Runs unmodified on **Node.js 20+**, **browsers**, **Cloudflare Workers**, and **Deno**.
 - Ships full TypeScript types for the KSeF API surface.
 - Stateless-friendly: the client holds tokens in memory; persist/restore them however you like.
 
