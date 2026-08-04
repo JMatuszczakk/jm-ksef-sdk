@@ -1,6 +1,6 @@
 # jm-ksef
 
-[![CI](https://github.com/kubamatuszczak2/jm-ksef/actions/workflows/ci.yml/badge.svg)](https://github.com/kubamatuszczak2/jm-ksef/actions/workflows/ci.yml)
+[![CI](https://github.com/JMatuszczakk/jm-ksef/actions/workflows/ci.yml/badge.svg)](https://github.com/JMatuszczakk/jm-ksef/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/jm-ksef.svg)](https://www.npmjs.com/package/jm-ksef)
 [![license](https://img.shields.io/npm/l/jm-ksef.svg)](LICENSE)
 

@@ -44,12 +44,12 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/kubamatuszczak2/jm-ksef.git"
+        "url": "git+https://github.com/JMatuszczakk/jm-ksef.git"
     },
     "bugs": {
-        "url": "https://github.com/kubamatuszczak2/jm-ksef/issues"
+        "url": "https://github.com/JMatuszczakk/jm-ksef/issues"
     },
-    "homepage": "https://github.com/kubamatuszczak2/jm-ksef#readme",
+    "homepage": "https://github.com/JMatuszczakk/jm-ksef#readme",
     "engines": {
         "node": ">=18"
     },
