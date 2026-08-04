@@ -1,5 +1,9 @@
 # jm-ksef
 
+[![CI](https://github.com/kubamatuszczak2/jm-ksef/actions/workflows/ci.yml/badge.svg)](https://github.com/kubamatuszczak2/jm-ksef/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/jm-ksef.svg)](https://www.npmjs.com/package/jm-ksef)
+[![license](https://img.shields.io/npm/l/jm-ksef.svg)](LICENSE)
+
 Plug-and-play JS/TS client for the Polish **KSeF** (Krajowy System e-Faktur) API v2 — the
 national e-invoicing system. Handles authentication, encrypted interactive/batch invoice
 sessions, invoice querying, async export, and QR verification-link generation.
@@ -155,6 +159,17 @@ for batch archives.
 `OnlineSession` has `sendInvoice(xml)` and `close()`. `BatchSession` has `close()` and
 exposes `invoiceCount` / `uploadResults`.
 
+## Further reading
+
+- [`docs/protocol-notes.md`](docs/protocol-notes.md) — why the auth/session/QR flows work
+  the way they do, useful when debugging a `KsefApiError`.
+- [`docs/testing-against-ksef.md`](docs/testing-against-ksef.md) — how to smoke-test
+  changes against the live KSeF test environment.
+- [`CONTRIBUTING.md`](CONTRIBUTING.md) — dev setup, workflow, release process.
+- [`AGENTS.md`](AGENTS.md) — conventions and hard constraints for AI coding agents
+  working in this repo.
+- [`CHANGELOG.md`](CHANGELOG.md) — release history.
+
 ## License
 
-MIT
+MIT — see [LICENSE](LICENSE).

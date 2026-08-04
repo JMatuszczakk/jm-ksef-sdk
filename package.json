@@ -5,21 +5,26 @@
     "type": "module",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
+    "sideEffects": false,
     "exports": {
         ".": {
             "types": "./dist/index.d.ts",
             "import": "./dist/index.js"
-        }
+        },
+        "./package.json": "./package.json"
     },
     "files": [
         "dist",
         "README.md",
-        "LICENSE"
+        "LICENSE",
+        "CHANGELOG.md"
     ],
     "scripts": {
         "build": "tsc -p tsconfig.json",
         "typecheck": "tsc --noEmit",
-        "prepublishOnly": "npm run build"
+        "pretest": "npm run build",
+        "test": "node --test test/*.test.js",
+        "prepublishOnly": "npm run build && npm test"
     },
     "keywords": [
         "ksef",
@@ -27,9 +32,24 @@
         "faktura",
         "poland",
         "krajowy-system-e-faktur",
-        "invoicing"
+        "invoicing",
+        "vat",
+        "fa3",
+        "webcrypto"
     ],
+    "author": {
+        "name": "Jakub Matuszczak",
+        "email": "kubamatuszczak2@gmail.com"
+    },
     "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kubamatuszczak2/jm-ksef.git"
+    },
+    "bugs": {
+        "url": "https://github.com/kubamatuszczak2/jm-ksef/issues"
+    },
+    "homepage": "https://github.com/kubamatuszczak2/jm-ksef#readme",
     "engines": {
         "node": ">=18"
     },
