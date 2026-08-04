@@ -1,6 +1,6 @@
 {
     "name": "jm-ksef",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "Plug-and-play JS/TS client for the Polish KSeF (Krajowy System e-Faktur) API v2 — authentication, invoice sessions (online + batch), querying, export, and verification. Zero dependencies, runs on Node 20+, browsers, and Cloudflare Workers (WebCrypto only).",
     "type": "module",
     "main": "./dist/index.js",

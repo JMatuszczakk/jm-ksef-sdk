@@ -24,6 +24,7 @@ jobs:
       # Trusted publishing (OIDC) requires npm CLI >= 11.5.0 — newer than what
       # setup-node's bundled Node currently ships.
       - run: npm install -g npm@latest
+      - run: npm --version
       - run: npm ci
       - run: npm run typecheck
       - run: npm test

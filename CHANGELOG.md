@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.3] - 2026-08-04
+
+### Fixed
+
+- Retry release to verify the OIDC trusted-publish exchange after correcting
+  the Trusted Publisher configuration on npm. No code change.
+
 ## [0.1.2] - 2026-08-04
 
 ### Fixed
@@ -38,7 +45,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Full TypeScript types for the KSeF API v2 surface used by this library.
 - Test suite covering crypto helpers, ZIP building, and session state guards.
 
-[Unreleased]: https://github.com/JMatuszczakk/jm-ksef-sdk/compare/v0.1.2...HEAD
+[Unreleased]: https://github.com/JMatuszczakk/jm-ksef-sdk/compare/v0.1.3...HEAD
+[0.1.3]: https://github.com/JMatuszczakk/jm-ksef-sdk/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/JMatuszczakk/jm-ksef-sdk/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/JMatuszczakk/jm-ksef-sdk/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/JMatuszczakk/jm-ksef-sdk/releases/tag/v0.1.0
