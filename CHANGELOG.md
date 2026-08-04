@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-08-04
+
+### Fixed
+
+- Raised the minimum supported Node version to 20 — `globalThis.crypto`
+  (WebCrypto) isn't reliably available on Node 18, which broke CI/consumers
+  running on that version. Documentation and CI matrix updated to match.
+
 ## [0.1.0] - 2026-08-04
 
 ### Added
@@ -20,5 +28,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Full TypeScript types for the KSeF API v2 surface used by this library.
 - Test suite covering crypto helpers, ZIP building, and session state guards.
 
-[Unreleased]: https://github.com/JMatuszczakk/jm-ksef-sdk/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/JMatuszczakk/jm-ksef-sdk/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/JMatuszczakk/jm-ksef-sdk/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/JMatuszczakk/jm-ksef-sdk/releases/tag/v0.1.0
