@@ -12,10 +12,14 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v4
+      # No `registry-url` here on purpose: setup-node auto-injects NODE_AUTH_TOKEN
+      # (defaulting to the ambient GITHUB_TOKEN) into .npmrc whenever registry-url
+      # is set, which npm then tries as a bearer token — it's invalid for the npm
+      # registry, publish fails as unauthorized, and OIDC trusted publishing never
+      # gets a chance to kick in. npm's default registry is already npmjs.org.
       - uses: actions/setup-node@v4
         with:
           node-version: 22.x
-          registry-url: https://registry.npmjs.org
           cache: npm
       # Trusted publishing (OIDC) requires npm CLI >= 11.5.0 — newer than what
       # setup-node's bundled Node currently ships.

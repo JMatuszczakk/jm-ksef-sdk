@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-08-04
+
+### Fixed
+
+- `publish.yml` no longer sets `registry-url` on the `setup-node` step — that
+  input auto-injects `NODE_AUTH_TOKEN` (defaulting to the ambient
+  `GITHUB_TOKEN`), which npm then tries as a bearer token instead of
+  attempting the OIDC trusted-publish exchange, causing publish to fail as
+  unauthorized. No functional change to the library itself.
+
 ## [0.1.1] - 2026-08-04
 
 ### Fixed
@@ -28,6 +38,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Full TypeScript types for the KSeF API v2 surface used by this library.
 - Test suite covering crypto helpers, ZIP building, and session state guards.
 
-[Unreleased]: https://github.com/JMatuszczakk/jm-ksef-sdk/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/JMatuszczakk/jm-ksef-sdk/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/JMatuszczakk/jm-ksef-sdk/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/JMatuszczakk/jm-ksef-sdk/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/JMatuszczakk/jm-ksef-sdk/releases/tag/v0.1.0
