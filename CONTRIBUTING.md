@@ -39,10 +39,30 @@ npm test            # build + run node:test suite against dist/
 
 ## Releasing (maintainers)
 
+Publishing uses npm's **Trusted Publishing** (OIDC) — the `publish.yml` workflow
+authenticates directly to npm via its GitHub Actions identity, no long-lived
+`NPM_TOKEN` secret involved.
+
+One-time setup (only needed once per package, already done for `jm-ksef` if you're
+reading this after the initial release):
+
+1. The package must exist on npm already — trusted publishing is configured from the
+   package's existing settings page, not at package-creation time. The very first
+   publish has to happen normally (`npm publish` from a maintainer's authenticated
+   machine, OTP and all).
+2. On [npmjs.com](https://www.npmjs.com) → the package → **Settings** → **Trusted
+   Publisher**, add a GitHub Actions publisher pointing at:
+   - Repository: `JMatuszczakk/jm-ksef-sdk`
+   - Workflow file: `.github/workflows/publish.yml`
+   - Environment: (leave blank unless you add one)
+
+After that, every release:
+
 1. Move the `[Unreleased]` changelog entries under a new `## [x.y.z] - YYYY-MM-DD` heading.
 2. Bump `version` in `package.json` to match.
 3. Commit, tag `vX.Y.Z`, push, and cut a GitHub Release — the `publish.yml` workflow
-   publishes to npm automatically on release.
+   publishes to npm automatically, authenticating via OIDC (requires npm CLI ≥ 11.5.0,
+   which the workflow installs explicitly).
 
 ## Reporting issues
 
